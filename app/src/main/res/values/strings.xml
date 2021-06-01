@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">weatherchek</string>
+    <string name="your_personal_weather_checker">Your personal weather checker</string>
+    <string name="enter_city_name">Enter City Name</string>
+    <string name="search">Search</string>
 </resources>
