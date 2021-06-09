@@ -1,6 +1,5 @@
 package com.example.weatherchek.model
 
-
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -33,4 +32,4 @@ data class Cityweather(
     val weather: List<Weather>? = null,
     @SerializedName("wind")
     val wind: Wind? = null
-):Parcelable
+) : Parcelable
