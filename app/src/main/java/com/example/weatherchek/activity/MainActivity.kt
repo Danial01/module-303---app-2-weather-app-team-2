@@ -32,8 +32,9 @@ class MainActivity : AppCompatActivity() {
         weatherForCity=findViewById(R.id.cityWeatherTextview)
 
         searchButton?.setOnClickListener {
-
-            if (!editTextCity?.text.isNullOrEmpty()) {
+            val cityName=nameOfCityEdittext?.text.toString().trim().toLowerCase()
+            if (cityName=="oslo" || cityName=="gothenburg" ||
+                    cityName=="london" || cityName=="panama") {
 
                 val intent = Intent(this@MainActivity, SearchResult::class.java)
                 intent.putExtra("cityname",editTextCity.text.toString())
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
 
             } else {
-                editTextCity?.setError("Cant be empty!")
+                editTextCity?.setError("Something went wrong! Enter new city!")
             }
             }
 

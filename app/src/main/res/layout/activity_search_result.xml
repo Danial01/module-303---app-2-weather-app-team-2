@@ -2,15 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center"
+    android:layout_margin="50dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.SearchResult">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cityWeather"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="334dp">
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="194dp"
+            android:layout_height="161dp"
+
+            android:layout_gravity="center"/>
+
+
+        <TextView
+            android:id="@+id/cityWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/weatherStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/cityTemp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="98dp"
+            android:layout_height="127dp"/>
+        <TextView
+            android:id="@+id/cityTempStat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"/>
+    </LinearLayout>
+
 
 </LinearLayout>
