@@ -30,7 +30,7 @@ class SearchResult : AppCompatActivity() {
         cityWeatherIcon = findViewById(R.id.weatherIcon)
         cityTempIcon = findViewById(R.id.cityTemp)
         cityTempText = findViewById(R.id.cityTempStat)
-        val city = intent.getStringExtra("cityname")
+        val city = intent.getStringExtra("cityName")
 
         getTheWeatherForCity(city.toString())
     }
@@ -61,7 +61,7 @@ class SearchResult : AppCompatActivity() {
                         } else {
                             cityTempIcon?.setImageResource(R.drawable.coldtemp)
                         }
-                        cityTempText?.text = it.main?.temp.roundToInt().toString() + " °C"
+                        cityTempText?.text = it.main.temp.roundToInt().toString() + " °C"
                     }
                 }
                 override fun onFailure(call: Call<Cityweather>, t: Throwable) {

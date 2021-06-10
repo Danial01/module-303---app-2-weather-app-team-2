@@ -12,11 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weatherchek">
         <activity android:name=".activity.SearchResult"></activity>
-        <activity android:name=".activity.searchresult" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

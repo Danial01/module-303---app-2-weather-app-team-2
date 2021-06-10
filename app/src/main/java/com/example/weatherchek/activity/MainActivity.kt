@@ -24,12 +24,12 @@ class MainActivity : AppCompatActivity() {
         weatherForCity = findViewById(R.id.cityWeatherTextview)
 
         searchButton?.setOnClickListener {
-            val cityName = nameOfCityEdittext?.text.toString().trim().toLowerCase()
+            val cityName = nameOfCityEdittext?.text.toString().toLowerCase().trim()
             if (cityName == "oslo" || cityName == "gothenburg" ||
                 cityName == "london" || cityName == "panama"
             ) {
                 val intent = Intent(this@MainActivity, SearchResult::class.java)
-                intent.putExtra("cityname", editTextCity.text.toString())
+                intent.putExtra("cityName", editTextCity.text.toString())
                 startActivity(intent)
             } else {
                 editTextCity?.setError("Something went wrong! Enter new city!")
