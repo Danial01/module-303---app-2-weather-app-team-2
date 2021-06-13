@@ -55,11 +55,11 @@ class SearchResult : AppCompatActivity() {
                         val date=Date()
                         cityDateText?.text= SimpleDateFormat("EE MMMM yyyy").format(date)
 
-                        when(it.name?.toLowerCase()){
-                            "london"->background?.setImageResource(R.drawable.london3)
-                            "oslo"->background?.setImageResource(R.drawable.oslo2)
-                            "panama"->background?.setImageResource(R.drawable.panama)
-                            "gothenburg"->background?.setImageResource(R.drawable.gothenburg)
+                        when(it.name){
+                            "London"->background?.setImageResource(R.drawable.london3)
+                            "Oslo"->background?.setImageResource(R.drawable.oslo2)
+                            "Panama"->background?.setImageResource(R.drawable.panama)
+                            "Gothenburg"->background?.setImageResource(R.drawable.gothenburg)
                         }
 
                         cityWeather?.text = it.weather?.first()?.description
