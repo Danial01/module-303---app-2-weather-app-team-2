@@ -79,6 +79,6 @@ class SearchResult : AppCompatActivity() {
             })
     }
     companion object {
-        private val TAG = MainActivity::class.java.simpleName
+        private val TAG = SearchResult::class.java.simpleName
     }
 }
