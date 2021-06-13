@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="weather_city">
+        <item>-Select City-</item>
+        <item>Gothenburg</item>
+        <item>London</item>
+        <item>Oslo</item>
+        <item>Panama</item>
+   </string-array>
+</resources>
