@@ -11,26 +11,32 @@ import com.example.weatherchek.model.Cityweather
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.roundToInt
 
 class SearchResult : AppCompatActivity() {
 
     private var cityWeather: TextView? = null
-    private var cityWeatherStatus: TextView? = null
     private var cityWeatherIcon: ImageView? = null
-    private var cityTempIcon: ImageView? = null
-    private var cityTempText: TextView? = null
+    private var cityWeatherStatus: TextView? = null
+    private var background:ImageView?=null
+    private var cityDateText: TextView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
 
-        cityWeather = findViewById(R.id.cityWeather)
+        cityWeather = findViewById(R.id.weatherDescription)
         cityWeatherStatus = findViewById(R.id.weatherStatus)
-        cityWeatherIcon = findViewById(R.id.weatherIcon)
-        cityTempIcon = findViewById(R.id.cityTemp)
-        cityTempText = findViewById(R.id.cityTempStat)
+        background=findViewById(R.id.backgroundImage)
+        cityDateText = findViewById(R.id.weatherDate)
+        cityWeatherIcon=findViewById(R.id.weatherResultLogo)
+
+
         val city = intent.getStringExtra("cityName")
+
 
         getTheWeatherForCity(city.toString())
     }
@@ -46,22 +52,25 @@ class SearchResult : AppCompatActivity() {
                 ) {
                     val listOfWeather = response.body()
                     listOfWeather?.let {
-                        cityWeather?.text = it.name
+                        val date=Date()
+                        cityDateText?.text= SimpleDateFormat("EE MMMM yyyy").format(date)
+
+                        when(it.name?.toLowerCase()){
+                            "london"->background?.setImageResource(R.drawable.london3)
+                            "oslo"->background?.setImageResource(R.drawable.oslo2)
+                            "panama"->background?.setImageResource(R.drawable.panama)
+                            "gothenburg"->background?.setImageResource(R.drawable.gothenburg)
+                        }
+
+                        cityWeather?.text = it.weather?.first()?.description
                         if (it.weather?.first()?.description.toString().contains("rain")) {
                             cityWeatherIcon?.setImageResource(R.drawable.rain)
                         } else if (it.weather?.first()?.description.toString().contains("cloud")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.cloud)
+                            cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
                         } else {
-                            cityWeatherIcon?.setImageResource(R.drawable.clearsky)
+                            cityWeatherIcon?.setImageResource(R.drawable.sunny)
                         }
-                        cityWeatherStatus?.text = it.weather?.first()?.description
-                        if (it.main?.temp!! > 15.0) {
-                            cityTempIcon?.setImageResource(R.drawable.warmtemp)
-
-                        } else {
-                            cityTempIcon?.setImageResource(R.drawable.coldtemp)
-                        }
-                        cityTempText?.text = it.main.temp.roundToInt().toString() + " °C"
+                        cityWeatherStatus?.text = it.main?.temp?.roundToInt().toString() + " °C"
                     }
                 }
                 override fun onFailure(call: Call<Cityweather>, t: Throwable) {

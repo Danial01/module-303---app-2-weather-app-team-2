@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import com.example.weatherchek.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,7 +12,6 @@ class MainActivity : AppCompatActivity() {
 
     private var nameOfCityEdittext: EditText? = null
     private var searchButton: Button? = null
-    private var weatherForCity: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         nameOfCityEdittext = findViewById(R.id.editTextCity)
         searchButton = findViewById(R.id.buttonSearchCity)
-        weatherForCity = findViewById(R.id.cityWeatherTextview)
-
+       
         searchButton?.setOnClickListener {
             val cityName = nameOfCityEdittext?.text.toString().toLowerCase().trim()
             if (cityName == "oslo" || cityName == "gothenburg" ||

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.weatherchek"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -44,4 +44,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+
 }

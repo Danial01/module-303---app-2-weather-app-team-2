@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background01"
     tools:context=".activity.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/logo1" />
 
-    <TextView
-        android:id="@+id/cityWeatherTextview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="100dp"
-        android:gravity="center"
-        android:text="@string/your_personal_weather_checker"
-        android:textSize="20sp" />
+
 
     <EditText
         android:id="@+id/editTextCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginStart="27dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="395dp"
         android:hint="@string/enter_city_name"
         android:inputType="text"
         android:textColorHint="@color/black" />
 
     <Button
+
+        android:background="#722196F3"
         android:id="@+id/buttonSearchCity"
-        android:layout_width="match_parent"
+        android:layout_width="357dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="343dp"
         android:text="@string/search" />
 
-</LinearLayout>
+</RelativeLayout>
