@@ -54,7 +54,6 @@ class SearchResult : AppCompatActivity() {
                     listOfWeather?.let {
                         val date=Date()
                         cityDateText?.text=SimpleDateFormat("EE dd MMMM").format(date).toUpperCase()
-
                         when(it.name){
                             "London"->background?.setImageResource(R.drawable.london4)
                             "Oslo"->background?.setImageResource(R.drawable.oslo2)
@@ -63,15 +62,17 @@ class SearchResult : AppCompatActivity() {
                         }
                         val description=it.weather?.first()?.description.toString()
                         cityWeather?.text =getString(R.string.weather_description,description[0].toUpperCase(),description.substring(1))
-                        if (it.weather?.first()?.description.toString().contains("rain")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.rain)
-                        } else if (it.weather?.first()?.description.toString().contains("cloud")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
-                        } else {
-                            cityWeatherIcon?.setImageResource(R.drawable.sunny)
-                        }
+                       when{
+                           it.weather?.first()?.description.toString().contains("rain")->
+                               cityWeatherIcon?.setImageResource(R.drawable.rain)
+                           it.weather?.first()?.description.toString().contains("cloud")->
+                               cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
+                           else ->cityWeatherIcon?.setImageResource(R.drawable.sunny)
+                       }
                         cityWeatherStatus?.text =getString(R.string.celcius_temp,it.main?.temp?.roundToInt().toString())
-                        tempMinMax?.text=getString(R.string.minmax_temp,it.main?.tempMin?.roundToInt().toString(),it.main?.tempMax?.roundToInt().toString())
+                        tempMinMax?.text=getString(R.string.minmax_temp,
+                            it.main?.tempMin?.roundToInt().toString(),
+                            it.main?.tempMax?.roundToInt().toString())
                     }
                 }
                 override fun onFailure(call: Call<Cityweather>, t: Throwable) {
