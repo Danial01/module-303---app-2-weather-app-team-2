@@ -22,6 +22,7 @@ class SearchResult : AppCompatActivity() {
     private var cityWeatherStatus: TextView? = null
     private var background:ImageView?=null
     private var cityDateText: TextView? = null
+    private var tempMinMax: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class SearchResult : AppCompatActivity() {
         background=findViewById(R.id.backgroundImage)
         cityDateText = findViewById(R.id.weatherDate)
         cityWeatherIcon=findViewById(R.id.weatherResultLogo)
+        tempMinMax=findViewById(R.id.minmaxTemp)
 
 
         val city = intent.getStringExtra("cityName")
@@ -53,16 +55,16 @@ class SearchResult : AppCompatActivity() {
                     val listOfWeather = response.body()
                     listOfWeather?.let {
                         val date=Date()
-                        cityDateText?.text= SimpleDateFormat("EE MMMM yyyy").format(date)
+                        cityDateText?.text=SimpleDateFormat("EE dd MMMM").format(date).toUpperCase()
 
                         when(it.name){
-                            "London"->background?.setImageResource(R.drawable.london3)
+                            "London"->background?.setImageResource(R.drawable.london4)
                             "Oslo"->background?.setImageResource(R.drawable.oslo2)
                             "Panama"->background?.setImageResource(R.drawable.panama)
                             "Gothenburg"->background?.setImageResource(R.drawable.gothenburg)
                         }
-
-                        cityWeather?.text = it.weather?.first()?.description
+                        val description=it.weather?.first()?.description.toString()
+                        cityWeather?.text =getString(R.string.weather_description,description[0].toUpperCase(),description.substring(1))
                         if (it.weather?.first()?.description.toString().contains("rain")) {
                             cityWeatherIcon?.setImageResource(R.drawable.rain)
                         } else if (it.weather?.first()?.description.toString().contains("cloud")) {
@@ -70,11 +72,12 @@ class SearchResult : AppCompatActivity() {
                         } else {
                             cityWeatherIcon?.setImageResource(R.drawable.sunny)
                         }
-                        cityWeatherStatus?.text = it.main?.temp?.roundToInt().toString() + " °C"
+                        cityWeatherStatus?.text =getString(R.string.celcius_temp,it.main?.temp?.roundToInt().toString())
+                        tempMinMax?.text=getString(R.string.minmax_temp,it.main?.tempMin?.roundToInt().toString(),it.main?.tempMax?.roundToInt().toString())
                     }
                 }
                 override fun onFailure(call: Call<Cityweather>, t: Throwable) {
-                    Log.e(SearchResult.TAG, "Not getting Data")
+                    Log.e(TAG, "Not getting Data")
                 }
             })
     }
