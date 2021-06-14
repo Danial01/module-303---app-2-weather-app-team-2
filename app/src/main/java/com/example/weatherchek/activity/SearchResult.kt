@@ -47,12 +47,16 @@ class SearchResult : AppCompatActivity() {
                     val listOfWeather = response.body()
                     listOfWeather?.let {
                         cityWeather?.text = it.name
-                        if (it.weather?.first()?.description.toString().contains("rain")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.rain)
-                        } else if (it.weather?.first()?.description.toString().contains("cloud")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.cloud)
-                        } else {
-                            cityWeatherIcon?.setImageResource(R.drawable.clearsky)
+                        when {
+                            it.weather?.first()?.description.toString().contains("rain") -> {
+                                cityWeatherIcon?.setImageResource(R.drawable.rain)
+                            }
+                            it.weather?.first()?.description.toString().contains("cloud") -> {
+                                cityWeatherIcon?.setImageResource(R.drawable.cloud)
+                            }
+                            else -> {
+                                cityWeatherIcon?.setImageResource(R.drawable.clearsky)
+                            }
                         }
                         cityWeatherStatus?.text = it.weather?.first()?.description
                         if (it.main?.temp!! > 15.0) {
