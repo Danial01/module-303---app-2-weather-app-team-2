@@ -29,22 +29,19 @@ class MainActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener  {
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         parent.setSelection(0)
-        val cityName = parent.getItemAtPosition(pos).toString().trim()
-        if (cityName == "Oslo" || cityName == "Gothenburg" ||
-            cityName == "London" || cityName == "Panama"
-        ) {
-            val intent = Intent(this@MainActivity, SearchResult::class.java)
-            intent.putExtra("cityName", cityName)
-            startActivity(intent)
+        when(parent.getItemAtPosition(pos)) {
+            "Oslo,NO","London,GB",
+            "Panama,PA","Gothenburg,SE"-> {
+                val cityName = parent.getItemAtPosition(pos).toString()
+                val intent = Intent(this@MainActivity, SearchResult::class.java)
+                intent.putExtra("cityName", cityName)
+                startActivity(intent)
+            }
         }
-
     }
-
     override fun onNothingSelected(parent: AdapterView<*>) {
         // Another interface callback
     }
-
-
 }
 
 

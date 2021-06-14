@@ -2,9 +2,9 @@
 <resources>
     <string-array name="weather_city">
         <item>-Select City-</item>
-        <item>Gothenburg</item>
-        <item>London</item>
-        <item>Oslo</item>
-        <item>Panama</item>
+        <item>Gothenburg,SE</item>
+        <item>London,GB</item>
+        <item>Oslo,NO</item>
+        <item>Panama,PA</item>
    </string-array>
 </resources>
