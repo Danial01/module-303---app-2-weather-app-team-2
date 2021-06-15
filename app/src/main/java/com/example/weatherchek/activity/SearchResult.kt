@@ -35,7 +35,7 @@ class SearchResult : AppCompatActivity() {
         background = findViewById(R.id.backgroundImage)
         cityDateText = findViewById(R.id.weatherDate)
         cityWeatherIcon = findViewById(R.id.weatherResultLogo)
-        tempMinMax = findViewById(R.id.minmaxTemp)
+        tempMinMax = findViewById(R.id.minMaxTemp)
 
 
         val city = intent.getStringExtra("cityName")

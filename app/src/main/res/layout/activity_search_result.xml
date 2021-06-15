@@ -9,10 +9,12 @@
 
     <ImageView
         android:id="@+id/backgroundImage"
+        android:contentDescription="@string/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <ImageView
+        android:contentDescription="@string/icons_for_weather"
         android:id="@+id/weatherResultLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +64,7 @@
         android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/minmaxTemp"
+        android:id="@+id/minMaxTemp"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:layout_alignParentStart="true"
