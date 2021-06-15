@@ -23,6 +23,7 @@ class SearchResult : AppCompatActivity() {
     private var background: ImageView? = null
     private var cityDateText: TextView? = null
     private var tempMinMax: TextView? = null
+    private val currentDate=SimpleDateFormat("EE dd MMMM",Locale.ROOT)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,9 +53,9 @@ class SearchResult : AppCompatActivity() {
                 ) {
                     val listOfWeather = response.body()
                     listOfWeather?.let {
-                        val date = Date()
-                        cityDateText?.text =
-                            SimpleDateFormat("EE dd MMMM").format(date).toUpperCase()
+                        val date =Date()
+                        cityDateText?.text =currentDate.format(date).toUpperCase(Locale.ROOT)
+
                         when (it.name) {
                             "London" -> background?.setImageResource(R.drawable.london4)
                             "Oslo" -> background?.setImageResource(R.drawable.oslo2)
