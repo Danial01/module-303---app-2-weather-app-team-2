@@ -69,6 +69,7 @@ class SearchResult : AppCompatActivity() {
                                cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
                            else ->cityWeatherIcon?.setImageResource(R.drawable.sunny)
                        }
+
                         cityWeatherStatus?.text =getString(R.string.celcius_temp,it.main?.temp?.roundToInt().toString())
                         tempMinMax?.text=getString(R.string.minmax_temp,
                             it.main?.tempMin?.roundToInt().toString(),
