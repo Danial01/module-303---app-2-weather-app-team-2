@@ -1,6 +1,5 @@
 package com.example.weatherchek.activity
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +8,7 @@ import android.widget.*
 import com.example.weatherchek.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener  {
+class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +23,14 @@ class MainActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener  {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
         }
-        spinner.onItemSelectedListener=this
+        spinner.onItemSelectedListener = this
     }
+
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         parent.setSelection(0)
-        when(parent.getItemAtPosition(pos)) {
-            "Oslo,NO","London,GB",
-            "Panama,PA","Gothenburg,SE"-> {
+        when (parent.getItemAtPosition(pos)) {
+            "Oslo,NO", "London,GB",
+            "Panama,PA", "Gothenburg,SE" -> {
                 val cityName = parent.getItemAtPosition(pos).toString()
                 val intent = Intent(this@MainActivity, SearchResult::class.java)
                 intent.putExtra("cityName", cityName)
@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener  {
             }
         }
     }
+
     override fun onNothingSelected(parent: AdapterView<*>) {
         // Another interface callback
     }
