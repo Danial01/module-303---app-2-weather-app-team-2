@@ -8,7 +8,7 @@ import android.widget.*
 import com.example.weatherchek.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,28 +23,24 @@ class MainActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
         }
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                parent?.setSelection(0)
-                val cityName = parent?.getItemAtPosition(position).toString().trim()
-                if (cityName == "Oslo" || cityName == "Gothenburg" ||
-                    cityName == "London" || cityName == "Panama"
-                ) {
-                    val intent = Intent(this@MainActivity, SearchResult::class.java)
-                    intent.putExtra("cityName", cityName)
-                    startActivity(intent)
-                }
-            }
+        spinner.onItemSelectedListener = this
+    }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        parent.setSelection(0)
+        when (parent.getItemAtPosition(pos)) {
+            "Oslo,NO", "London,GB",
+            "Panama,PA", "Gothenburg,SE" -> {
+                val cityName = parent.getItemAtPosition(pos).toString()
+                val intent = Intent(this@MainActivity, SearchResult::class.java)
+                intent.putExtra("cityName", cityName)
+                startActivity(intent)
             }
         }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Another interface callback
     }
 }
 

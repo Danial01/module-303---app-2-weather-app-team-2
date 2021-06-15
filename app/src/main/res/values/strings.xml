@@ -7,4 +7,8 @@
     <string name="celcius_temp">%1$s°C</string>
     <string name="weather_description">%1$s%2$s</string>
     <string name="minmax_temp">Min:%1$s°C/Max:%2$s°C</string>
+    <string name="background_image">background image</string>
+    <string name="icons_for_weather">icons for weather</string>
+    <string name="icon">icon</string>
+    <string name="logo_String">logoString</string>
 </resources>

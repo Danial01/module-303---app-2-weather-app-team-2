@@ -20,9 +20,10 @@ class SearchResult : AppCompatActivity() {
     private var cityWeather: TextView? = null
     private var cityWeatherIcon: ImageView? = null
     private var cityWeatherStatus: TextView? = null
-    private var background:ImageView?=null
+    private var background: ImageView? = null
     private var cityDateText: TextView? = null
     private var tempMinMax: TextView? = null
+    private val currentDate=SimpleDateFormat("EE dd MMMM",Locale.ROOT)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,15 +32,13 @@ class SearchResult : AppCompatActivity() {
 
         cityWeather = findViewById(R.id.weatherDescription)
         cityWeatherStatus = findViewById(R.id.weatherStatus)
-        background=findViewById(R.id.backgroundImage)
+        background = findViewById(R.id.backgroundImage)
         cityDateText = findViewById(R.id.weatherDate)
-        cityWeatherIcon=findViewById(R.id.weatherResultLogo)
-        tempMinMax=findViewById(R.id.minmaxTemp)
+        cityWeatherIcon = findViewById(R.id.weatherResultLogo)
+        tempMinMax = findViewById(R.id.minMaxTemp)
 
 
         val city = intent.getStringExtra("cityName")
-
-
         getTheWeatherForCity(city.toString())
     }
 
@@ -54,33 +53,45 @@ class SearchResult : AppCompatActivity() {
                 ) {
                     val listOfWeather = response.body()
                     listOfWeather?.let {
-                        val date=Date()
-                        cityDateText?.text=SimpleDateFormat("EE dd MMMM").format(date).toUpperCase()
-                        when(it.name){
-                            "London"->background?.setImageResource(R.drawable.london4)
-                            "Oslo"->background?.setImageResource(R.drawable.oslo2)
-                            "Panama"->background?.setImageResource(R.drawable.panama)
-                            "Gothenburg"->background?.setImageResource(R.drawable.gothenburg)
-                        }
-                        val description=it.weather?.first()?.description.toString()
-                        cityWeather?.text =getString(R.string.weather_description,description[0].toUpperCase(),description.substring(1))
-                        if (it.weather?.first()?.description.toString().contains("rain")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.rain)
-                        } else if (it.weather?.first()?.description.toString().contains("cloud")) {
-                            cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
+                        val date =Date()
+                        cityDateText?.text =currentDate.format(date).toUpperCase(Locale.ROOT)
 
-                        } else {
-                            cityWeatherIcon?.setImageResource(R.drawable.sunny)
+                        when (it.name) {
+                            "London" -> background?.setImageResource(R.drawable.london4)
+                            "Oslo" -> background?.setImageResource(R.drawable.oslo2)
+                            "Panama" -> background?.setImageResource(R.drawable.panama)
+                            "Gothenburg" -> background?.setImageResource(R.drawable.gothenburg)
                         }
-                        cityWeatherStatus?.text =getString(R.string.celcius_temp,it.main?.temp?.roundToInt().toString())
-                        tempMinMax?.text=getString(R.string.minmax_temp,it.main?.tempMin?.roundToInt().toString(),it.main?.tempMax?.roundToInt().toString())
+                        val description = it.weather?.first()?.description.toString()
+                        cityWeather?.text = getString(
+                            R.string.weather_description,
+                            description[0].toUpperCase(),
+                            description.substring(1)
+                        )
+                        when {
+                            it.weather?.first()?.description.toString().contains("rain") ->
+                                cityWeatherIcon?.setImageResource(R.drawable.rain)
+                            it.weather?.first()?.description.toString().contains("cloud") ->
+                                cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
+                            else -> cityWeatherIcon?.setImageResource(R.drawable.sunny)
+                        }
+
+                        cityWeatherStatus?.text =
+                            getString(R.string.celcius_temp, it.main?.temp?.roundToInt().toString())
+                        tempMinMax?.text = getString(
+                            R.string.minmax_temp,
+                            it.main?.tempMin?.roundToInt().toString(),
+                            it.main?.tempMax?.roundToInt().toString()
+                        )
                     }
                 }
+
                 override fun onFailure(call: Call<Cityweather>, t: Throwable) {
                     Log.e(TAG, "Not getting Data")
                 }
             })
     }
+
     companion object {
         private val TAG = SearchResult::class.java.simpleName
     }
