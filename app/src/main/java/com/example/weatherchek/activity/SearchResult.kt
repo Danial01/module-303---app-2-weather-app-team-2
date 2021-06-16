@@ -26,7 +26,6 @@ class SearchResult : AppCompatActivity() {
     private var tempMinMax: TextView? = null
     private val currentDate=SimpleDateFormat("EE dd MMM", Locale.getDefault())
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
