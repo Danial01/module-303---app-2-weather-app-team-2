@@ -1,11 +1,11 @@
 package com.example.weatherchek.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherchek.R
 
 class SplashScreen : AppCompatActivity() {
@@ -24,7 +24,7 @@ class SplashScreen : AppCompatActivity() {
             this,
             R.anim.splash_slide_in_bottom
         )
-        val timer = object: CountDownTimer(5000, 1000) {
+        val timer = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
                 val intent = Intent(this@SplashScreen, MainActivity::class.java)
@@ -36,4 +36,3 @@ class SplashScreen : AppCompatActivity() {
         timer.start()
     }
 }
-

@@ -1,11 +1,11 @@
 package com.example.weatherchek.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherchek.R
 import com.example.weatherchek.backend.RetrofitClient
 import com.example.weatherchek.model.Cityweather
@@ -13,7 +13,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 import kotlin.math.roundToInt
 
 class SearchResult : AppCompatActivity() {
@@ -24,7 +25,7 @@ class SearchResult : AppCompatActivity() {
     private var background: ImageView? = null
     private var cityDateText: TextView? = null
     private var tempMinMax: TextView? = null
-    private val currentDate=SimpleDateFormat("EE dd MMM", Locale.getDefault())
+    private val currentDate = SimpleDateFormat("EE dd MMM", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +39,9 @@ class SearchResult : AppCompatActivity() {
         tempMinMax = findViewById(R.id.minMaxTemp)
 
         val city = intent.getStringExtra(MainActivity.TAG_cityName)
+        // check if null or not
         city?.let {
-            getTheWeatherForCity(city)
+            getTheWeatherForCity(it)
         }
     }
 
@@ -52,8 +54,8 @@ class SearchResult : AppCompatActivity() {
                     call: Call<Cityweather>,
                     response: Response<Cityweather>
                 ) {
-                    if(response.isSuccessful){
-                       val listOfWeather = response.body()
+                    if (response.isSuccessful) {
+                        val listOfWeather = response.body()
                         listOfWeather?.let {
                             val date = Date()
                             cityDateText?.text = currentDate.format(date).toUpperCase(Locale.ROOT)
@@ -97,14 +99,16 @@ class SearchResult : AppCompatActivity() {
 
                         Toast.makeText(this@SearchResult, message, Toast.LENGTH_LONG).show()
                         Log.e(TAG, getString(message))
-
-                    }}
-                    override fun onFailure(call: Call<Cityweather>, t: Throwable) {
-                        Toast.makeText(this@SearchResult,
-                            getString(R.string.check_error),
-                            Toast.LENGTH_LONG).show()
-                        Log.e(TAG, getString(R.string.error_log))
                     }
+                }
+                override fun onFailure(call: Call<Cityweather>, t: Throwable) {
+                    Toast.makeText(
+                        this@SearchResult,
+                        getString(R.string.check_error),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.e(TAG, getString(R.string.error_log))
+                }
             })
     }
 
