@@ -80,9 +80,9 @@ class SearchResult : AppCompatActivity() {
                             }
 
                             cityWeatherStatus?.text =
-                                getString(R.string.celcius_temp, it.main?.temp?.roundToInt().toString())
+                                getString(R.string.celsius_temp, it.main?.temp?.roundToInt().toString())
                             tempMinMax?.text = getString(
-                                R.string.minmax_temp,
+                                R.string.min_max_temp,
                                 it.main?.tempMin?.roundToInt().toString(),
                                 it.main?.tempMax?.roundToInt().toString()
                             )
@@ -93,7 +93,7 @@ class SearchResult : AppCompatActivity() {
                             401 -> R.string.unauthorized
                             403 -> R.string.forbidden
                             404 -> R.string.user_not_found
-                            else -> R.string.try_onother_user
+                            else -> R.string.try_another_user
                         }
 
                         Toast.makeText(this@SearchResult, message, Toast.LENGTH_LONG).show()
