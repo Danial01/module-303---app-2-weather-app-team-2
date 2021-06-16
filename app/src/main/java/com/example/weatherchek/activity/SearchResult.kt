@@ -24,7 +24,7 @@ class SearchResult : AppCompatActivity() {
     private var background: ImageView? = null
     private var cityDateText: TextView? = null
     private var tempMinMax: TextView? = null
-    private val currentDate=SimpleDateFormat("EE dd MMMM",Locale.ROOT)
+    private val currentDate=SimpleDateFormat("EE dd MMM", Locale.getDefault())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
