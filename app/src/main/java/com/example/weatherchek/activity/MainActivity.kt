@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "Panama,PA", "Gothenburg,SE" -> {
                 val cityName = parent.getItemAtPosition(pos).toString()
                 val intent = Intent(this@MainActivity, SearchResult::class.java)
-                intent.putExtra("cityName", cityName)
+                intent.putExtra(TAG_cityName, cityName)
                 startActivity(intent)
             }
         }
@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>) {
         // Another interface callback
+    }
+    companion object {
+        const val TAG_cityName = "cityName"
     }
 }
 

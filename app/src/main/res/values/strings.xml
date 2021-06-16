@@ -11,4 +11,11 @@
     <string name="icons_for_weather">icons for weather</string>
     <string name="icon">icon</string>
     <string name="logo_String">logoString</string>
+    <string name="internal_server_error">Internal Server Error</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="forbidden">Forbidden</string>
+    <string name="user_not_found">city name not found</string>
+    <string name="try_onother_user">try onother city</string>
+    <string name="check_error">Please check the internet connection!</string>
+    <string name="error_log">Not getting Data</string>
 </resources>
