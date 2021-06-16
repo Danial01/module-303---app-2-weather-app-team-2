@@ -39,7 +39,7 @@ class SearchResult : AppCompatActivity() {
 
 
         val city = intent.getStringExtra("cityName")
-        getTheWeatherForCity(city.toString())
+        city?.let { getTheWeatherForCity(it) }
     }
 
     private fun getTheWeatherForCity(city: String) {
