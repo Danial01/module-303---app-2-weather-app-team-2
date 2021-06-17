@@ -37,10 +37,9 @@ class SearchResult : AppCompatActivity() {
         cityWeatherIcon = findViewById(R.id.weatherResultLogo)
         tempMinMax = findViewById(R.id.minMaxTemp)
 
-
-        val city = intent.getStringExtra(cityName)
-        getTheWeatherForCity(city.toString())
-    }
+        val city = intent.getStringExtra("cityName")
+        city?.let { getTheWeatherForCity(it) }
+   }
 
     private fun getTheWeatherForCity(city: String) {
         RetrofitClient
