@@ -28,7 +28,7 @@ class SearchResult : AppCompatActivity() {
         binding = ActivitySearchResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.myProgressBar.visibility = View.VISIBLE
+       binding.myProgressBar.visibility = View.VISIBLE
 
         val city = intent.getStringExtra(MainActivity.TAG_cityName)
         if (city != null) {
@@ -37,7 +37,6 @@ class SearchResult : AppCompatActivity() {
             Toast.makeText(this, "Something went wrong! Try again!", Toast.LENGTH_LONG).show()
         }
     }
-
     private fun getTheWeatherForCity(city: String) {
         RetrofitClient
             .instance
@@ -108,5 +107,7 @@ class SearchResult : AppCompatActivity() {
 
     companion object {
         private val TAG = SearchResult::class.java.simpleName
+        const val cityName = "cityName"
+
     }
 }
