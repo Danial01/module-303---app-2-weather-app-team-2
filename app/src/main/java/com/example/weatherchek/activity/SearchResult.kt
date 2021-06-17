@@ -45,9 +45,10 @@ class SearchResult : AppCompatActivity() {
         progressbar?.visibility=View.VISIBLE
 
         val city = intent.getStringExtra(MainActivity.TAG_cityName)
-        // check if null or not
-        city?.let {
-            getTheWeatherForCity(it)
+        if (city != null) {
+           getTheWeatherForCity(city)
+        } else{
+            Toast.makeText(this,"Something went wrong! Try again!",Toast.LENGTH_LONG).show()
         }
     }
 
