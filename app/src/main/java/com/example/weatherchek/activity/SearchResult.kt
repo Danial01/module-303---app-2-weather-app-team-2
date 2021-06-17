@@ -2,7 +2,9 @@ package com.example.weatherchek.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,7 @@ class SearchResult : AppCompatActivity() {
     private var cityWeatherIcon: ImageView? = null
     private var cityWeatherStatus: TextView? = null
     private var background: ImageView? = null
+    private var progressbar: ProgressBar? = null
     private var cityDateText: TextView? = null
     private var tempMinMax: TextView? = null
     private val currentDate = SimpleDateFormat("EE dd MMM", Locale.getDefault())
@@ -37,6 +40,9 @@ class SearchResult : AppCompatActivity() {
         cityDateText = findViewById(R.id.weatherDate)
         cityWeatherIcon = findViewById(R.id.weatherResultLogo)
         tempMinMax = findViewById(R.id.minMaxTemp)
+        progressbar = findViewById(R.id.myProgressBar)
+
+        progressbar?.visibility=View.VISIBLE
 
         val city = intent.getStringExtra(MainActivity.TAG_cityName)
         // check if null or not
@@ -57,6 +63,7 @@ class SearchResult : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val listOfWeather = response.body()
                         listOfWeather?.let {
+                            progressbar?.visibility=View.INVISIBLE
                             val date = Date()
                             cityDateText?.text = currentDate.format(date).toUpperCase(Locale.ROOT)
 
