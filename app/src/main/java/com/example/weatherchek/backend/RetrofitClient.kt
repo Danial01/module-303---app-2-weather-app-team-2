@@ -14,4 +14,3 @@ object RetrofitClient {
         retrofit.create(Endpoint::class.java)
     }
 }
-

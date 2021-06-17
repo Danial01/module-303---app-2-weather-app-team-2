@@ -10,4 +10,4 @@ data class Wind(
     val deg: Int? = null,
     @SerializedName("speed")
     val speed: Double? = null
-):Parcelable
+) : Parcelable

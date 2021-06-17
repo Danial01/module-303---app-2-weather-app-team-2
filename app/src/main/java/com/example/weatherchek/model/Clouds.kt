@@ -8,4 +8,4 @@ import kotlinx.android.parcel.Parcelize
 data class Clouds(
     @SerializedName("all")
     val all: Int? = null
-):Parcelable
+) : Parcelable

@@ -18,4 +18,4 @@ data class Main(
     val tempMax: Double? = null,
     @SerializedName("temp_min")
     val tempMin: Double? = null
-):Parcelable
+) : Parcelable

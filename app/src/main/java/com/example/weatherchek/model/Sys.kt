@@ -18,4 +18,4 @@ data class Sys(
     val sunset: Int? = null,
     @SerializedName("type")
     val type: Int? = null
-):Parcelable
+) : Parcelable

@@ -14,4 +14,4 @@ data class Weather(
     val id: Int? = null,
     @SerializedName("main")
     val main: String? = null
-):Parcelable
+) : Parcelable
