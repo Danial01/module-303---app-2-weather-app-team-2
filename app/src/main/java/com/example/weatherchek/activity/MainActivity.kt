@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "Panama,PA", "Gothenburg,SE" -> {
                 val cityName = parent.getItemAtPosition(pos).toString()
                 val intent = Intent(this@MainActivity, SearchResult::class.java)
-                intent.putExtra("cityName", cityName)
+                intent.putExtra(SearchResult.cityName, cityName)
                 startActivity(intent)
             }
         }
