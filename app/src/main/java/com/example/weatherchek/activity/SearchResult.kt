@@ -38,7 +38,7 @@ class SearchResult : AppCompatActivity() {
         tempMinMax = findViewById(R.id.minMaxTemp)
 
 
-        val city = intent.getStringExtra("cityName")
+        val city = intent.getStringExtra(cityName)
         getTheWeatherForCity(city.toString())
     }
 
@@ -94,5 +94,7 @@ class SearchResult : AppCompatActivity() {
 
     companion object {
         private val TAG = SearchResult::class.java.simpleName
+        const val cityName = "cityName"
+
     }
 }
