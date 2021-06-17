@@ -3,13 +3,11 @@ package com.example.weatherchek.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherchek.R
 import com.example.weatherchek.backend.RetrofitClient
+import com.example.weatherchek.databinding.ActivitySearchResultBinding
 import com.example.weatherchek.model.Cityweather
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,34 +19,22 @@ import kotlin.math.roundToInt
 
 class SearchResult : AppCompatActivity() {
 
-    private var cityWeather: TextView? = null
-    private var cityWeatherIcon: ImageView? = null
-    private var cityWeatherStatus: TextView? = null
-    private var background: ImageView? = null
-    private var progressbar: ProgressBar? = null
-    private var cityDateText: TextView? = null
-    private var tempMinMax: TextView? = null
+    lateinit var binding: ActivitySearchResultBinding
     private val currentDate = SimpleDateFormat("EE dd MMM", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_result)
 
-        cityWeather = findViewById(R.id.weatherDescription)
-        cityWeatherStatus = findViewById(R.id.weatherStatus)
-        background = findViewById(R.id.backgroundImage)
-        cityDateText = findViewById(R.id.weatherDate)
-        cityWeatherIcon = findViewById(R.id.weatherResultLogo)
-        tempMinMax = findViewById(R.id.minMaxTemp)
-        progressbar = findViewById(R.id.myProgressBar)
+        binding = ActivitySearchResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        progressbar?.visibility=View.VISIBLE
+        binding.myProgressBar.visibility = View.VISIBLE
 
         val city = intent.getStringExtra(MainActivity.TAG_cityName)
         if (city != null) {
-           getTheWeatherForCity(city)
-        } else{
-            Toast.makeText(this,"Something went wrong! Try again!",Toast.LENGTH_LONG).show()
+            getTheWeatherForCity(city)
+        } else {
+            Toast.makeText(this, "Something went wrong! Try again!", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -64,33 +50,33 @@ class SearchResult : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val listOfWeather = response.body()
                         listOfWeather?.let {
-                            progressbar?.visibility=View.INVISIBLE
+                            binding.myProgressBar.visibility = View.INVISIBLE
                             val date = Date()
-                            cityDateText?.text = currentDate.format(date).toUpperCase(Locale.ROOT)
+                            binding.weatherDate.text = currentDate.format(date).toUpperCase(Locale.ROOT)
 
                             when (it.name) {
-                                "London" -> background?.setImageResource(R.drawable.london4)
-                                "Oslo" -> background?.setImageResource(R.drawable.oslo2)
-                                "Panama" -> background?.setImageResource(R.drawable.panama)
-                                "Gothenburg" -> background?.setImageResource(R.drawable.gothenburg)
+                                "London" -> binding.backgroundImage.setImageResource(R.drawable.london4)
+                                "Oslo" -> binding.backgroundImage.setImageResource(R.drawable.oslo2)
+                                "Panama" -> binding.backgroundImage.setImageResource(R.drawable.panama)
+                                "Gothenburg" -> binding.backgroundImage.setImageResource(R.drawable.gothenburg)
                             }
                             val description = it.weather?.first()?.description.toString()
-                            cityWeather?.text = getString(
+                            binding.weatherDescription.text = getString(
                                 R.string.weather_description,
                                 description[0].toUpperCase(),
                                 description.substring(1)
                             )
                             when {
                                 it.weather?.first()?.description.toString().contains("rain") ->
-                                    cityWeatherIcon?.setImageResource(R.drawable.rain)
+                                    binding.weatherResultLogo.setImageResource(R.drawable.rain)
                                 it.weather?.first()?.description.toString().contains("cloud") ->
-                                    cityWeatherIcon?.setImageResource(R.drawable.sunny_cloud2)
-                                else -> cityWeatherIcon?.setImageResource(R.drawable.sunny)
+                                    binding.weatherResultLogo.setImageResource(R.drawable.sunny_cloud2)
+                                else -> binding.weatherResultLogo.setImageResource(R.drawable.sunny)
                             }
 
-                            cityWeatherStatus?.text =
+                            binding.weatherStatus.text =
                                 getString(R.string.celsius_temp, it.main?.temp?.roundToInt().toString())
-                            tempMinMax?.text = getString(
+                            binding.minMaxTemp.text = getString(
                                 R.string.min_max_temp,
                                 it.main?.tempMin?.roundToInt().toString(),
                                 it.main?.tempMax?.roundToInt().toString()
