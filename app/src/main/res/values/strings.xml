@@ -4,8 +4,7 @@
     <string name="enter_city_name">Enter City Name</string>
     <string name="search">Search</string>
     <string name="in_the_city_the_weather_is">In the City the weather is :</string>
-    <string name="celsius_temp">%1$s°C</string>
-    <string name="weather_description">%1$s%2$s</string>
+    <string name="celsius_temp" translatable="false">%1$s°C</string>
     <string name="min_max_temp">Min:%1$s°C/Max:%2$s°C</string>
     <string name="background_image">background image</string>
     <string name="icons_for_weather">icons for weather</string>
@@ -18,4 +17,5 @@
     <string name="try_another_user">try another city</string>
     <string name="check_error">Please check the internet connection!</string>
     <string name="error_log">Not getting Data</string>
+    <string name="error_message">Something went wrong! Try again!</string>
 </resources>

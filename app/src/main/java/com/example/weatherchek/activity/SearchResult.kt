@@ -27,14 +27,13 @@ class SearchResult : AppCompatActivity() {
 
         binding = ActivitySearchResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-       binding.myProgressBar.visibility = View.VISIBLE
+        binding.myProgressBar.visibility = View.VISIBLE
 
         val city = intent.getStringExtra(MainActivity.TAG_cityName)
         if (city != null) {
             getTheWeatherForCity(city)
         } else {
-            Toast.makeText(this, "Something went wrong! Try again!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.error_message), Toast.LENGTH_LONG).show()
         }
     }
     private fun getTheWeatherForCity(city: String) {
@@ -59,12 +58,11 @@ class SearchResult : AppCompatActivity() {
                                 "Panama" -> binding.backgroundImage.setImageResource(R.drawable.panama)
                                 "Gothenburg" -> binding.backgroundImage.setImageResource(R.drawable.gothenburg)
                             }
-                            val description = it.weather?.first()?.description.toString()
-                            binding.weatherDescription.text = getString(
-                                R.string.weather_description,
-                                description[0].toUpperCase(),
-                                description.substring(1)
-                            )
+                            val description = it.weather?.first()?.description
+                                .toString()
+                                .capitalize(Locale.ROOT)
+                            binding.weatherDescription.text = description
+
                             when {
                                 it.weather?.first()?.description.toString().contains("rain") ->
                                     binding.weatherResultLogo.setImageResource(R.drawable.rain)
@@ -107,7 +105,5 @@ class SearchResult : AppCompatActivity() {
 
     companion object {
         private val TAG = SearchResult::class.java.simpleName
-        const val cityName = "cityName"
-
     }
 }
